@@ -1,4 +1,4 @@
-package dev.henriqueluiz
+package dev.henriqueluiz.list
 
 /*
     LISTA ENCADEADA (SINGLY)
@@ -21,7 +21,7 @@ class SinglyLinkedList[T]:
     private var _head: Option[Node] = None
 
     /*
-        * Método que insere valor no início.
+        * Método que insere valor.
     */
 
     def add(data: T): Unit =
