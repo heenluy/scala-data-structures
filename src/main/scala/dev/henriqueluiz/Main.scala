@@ -1,4 +1,3 @@
 package dev.henriqueluiz
 
-@main def main() =
-    println()
+@main def main() = println("Learning Data Structures and Algorithms")
