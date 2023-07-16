@@ -24,4 +24,9 @@ package dev.henriqueluiz.stack
     stack2.push(4)
     stack2.push(5)
     println(s"STACK TWO :: $stack2")
-    println(s"TOP STACK TWO :: ${stack2.top()}")
+
+    // ----- STACK TEST -----
+    val stackTest = StackTest.empty[String]
+    stackTest.push("World")
+    stackTest.push("Hello")
+    println(s"STACK TEST :: $stackTest")
