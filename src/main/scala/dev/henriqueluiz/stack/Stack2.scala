@@ -8,11 +8,11 @@ import scala.reflect.ClassTag
 * 
 */
 
-class StackTwo[T: ClassTag] private (
+class Stack2[T: ClassTag] private (
     private var items: Array[T],
     private var size: Int ):
 
-    def push(item: T): StackTwo[T] =
+    def push(item: T): Stack2[T] =
         val newEls = new Array[T](size + 1)
         
         for i <- 0 until items.length do
@@ -23,7 +23,7 @@ class StackTwo[T: ClassTag] private (
         size += 1
         this
 
-    def pop(): Option[(T, StackTwo[T])] =
+    def pop(): Option[(T, Stack2[T])] =
         if size > 0 then
             val newEls = new Array[T](size - 1)
             val poppedEl = items(size - 1)
@@ -50,7 +50,7 @@ class StackTwo[T: ClassTag] private (
     override def toString(): String =
         items.reverse.mkString("Stack(", ", ", ")")
 
-object StackTwo:
-    def empty[T: ClassTag]: StackTwo[T] = 
-        new StackTwo[T](new Array[T](0), 0)
+object Stack2:
+    def empty[T: ClassTag]: Stack2[T] = 
+        new Stack2[T](new Array[T](0), 0)
 

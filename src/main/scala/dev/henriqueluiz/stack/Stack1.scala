@@ -16,7 +16,7 @@ import scala.reflect.ClassTag
        é conhecido em tempo de compilação devido ao uso de tipos genéricos.
 */
 
-class StackOne[T: ClassTag] private (
+class Stack1[T: ClassTag] private (
     private var items: Array[T],
     private var size: Int ):
     
@@ -27,7 +27,7 @@ class StackOne[T: ClassTag] private (
      *   4. Uma nova pilha é criada com o novo array e o size +1
     */
 
-    def push(item: T): StackOne[T] =
+    def push(item: T): Stack1[T] =
         val newEls = new Array[T](size + 1)
         Array.copy(items, 0, newEls, 0, size)
         newEls(size) = item
@@ -44,7 +44,7 @@ class StackOne[T: ClassTag] private (
     * 5. Retorna uma tupla com o item removido e a nova pilha. 
     */
 
-    def pop(): Option[(T, StackOne[T])] =
+    def pop(): Option[(T, Stack1[T])] =
         if size > 0 then
             val popped = items(size - 1)
             val newEls = new Array[T](size - 1)
@@ -75,11 +75,11 @@ class StackOne[T: ClassTag] private (
     override def toString(): String =
         items.reverse.mkString("Stack(", ", ", ")")
 
-object StackOne:
-    def empty[T: ClassTag]: StackOne[T] =
-        new StackOne[T](new Array[T](0), 0)
+object Stack1:
+    def empty[T: ClassTag]: Stack1[T] =
+        new Stack1[T](new Array[T](0), 0)
     
-    def apply[T: ClassTag](items: T*): StackOne[T] =
-        new StackOne[T](items.toArray, items.length)
+    def apply[T: ClassTag](items: T*): Stack1[T] =
+        new Stack1[T](items.toArray, items.length)
 
-end StackOne
+end Stack1

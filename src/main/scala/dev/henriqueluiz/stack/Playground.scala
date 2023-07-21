@@ -3,21 +3,21 @@ package dev.henriqueluiz.stack
 @main def main(): Unit =
     
     // ----- STACK ZERO -----
-    val stack0 = StackZero.empty[Int]
+    val stack0 = Stack0.empty[Int]
     stack0.push(1)
     stack0.push(2)
     stack0.push(3)
     println(s"STACK ZERO :: $stack0")
 
     // ----- STACK ONE -----
-    val stack1 = StackOne.empty[Int]
+    val stack1 = Stack1.empty[Int]
     stack1.push(1)
     stack1.push(2)
     stack1.push(3)
     println(s"STACK ONE :: $stack1")
 
     // ----- STACK TWO -----
-    val stack2 = StackTwo.empty[Int]
+    val stack2 = Stack2.empty[Int]
     stack2.push(1)
     stack2.push(2)
     stack2.push(3)
@@ -25,8 +25,7 @@ package dev.henriqueluiz.stack
     stack2.push(5)
     println(s"STACK TWO :: $stack2")
 
-    // ----- STACK TEST -----
-    val stackTest = StackTest.empty[String]
-    stackTest.push("World")
-    stackTest.push("Hello")
-    println(s"STACK TEST :: $stackTest")
+    /**
+      * Criar tipos diferentes de Stack.
+      * Treinar a ánalise de complexidade de algorítimos.
+    */
