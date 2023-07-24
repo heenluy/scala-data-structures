@@ -44,26 +44,18 @@ class Stack3[A]:
     end top
 
     def top(index: Int): Option[A] =
-        var currentNode = linkedNode
-        var data: Option[A] = None
-        
-        isEmpty match
-            case true =>
+        index match
+            case z if isEmpty =>
                 println("The stack is empty.")
                 None
-            
-            case _: Boolean =>
-                for 
-                    i <- 1 until index
-                do
-                    if !currentNode.get.next.isDefined then
-                        println(s"This index (${index}) isn't valid.")
-                        data = None
-                    else
-                        currentNode = currentNode.get.next
-                        data = Some(currentNode.get.data)
-                    end if
-        data
+            case x if x <= 0 || x > size =>
+                println(s"Invalid index: $index")
+                None
+            case _ =>
+                var currentNode = linkedNode
+                for i <- 1 until index do
+                    currentNode = currentNode.get.next
+                Some(currentNode.get.data)
     end top
 
     def isEmpty: Boolean = size == 0
