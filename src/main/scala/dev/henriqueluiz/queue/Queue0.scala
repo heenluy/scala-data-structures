@@ -1,6 +1,7 @@
 package dev.henriqueluiz.queue
 
 // É uma implementação simples da estrtura fila (Queue).
+// Possui o tamanho dinâmico.
 class Queue0[A]:
     
     /**
