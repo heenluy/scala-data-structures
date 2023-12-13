@@ -22,7 +22,7 @@ class ArrayBasedStack[T: ClassTag] private (
     
     /*
      *   1. Um novo array é criado com o tamanho +1
-     *   2. Todos os elemntos do array principal é copiado para o novo.
+     *   2. Todos os elementos do array principal é copiado para o novo.
      *   3. O item 'T' é adicionado ao novo array na última posição.
      *   4. Uma nova pilha é criada com o novo array e o size +1
     */
@@ -69,10 +69,10 @@ class ArrayBasedStack[T: ClassTag] private (
     * Retorna 'true' ou 'false', dependendo do tamanho da pilha.   
     */
 
-    def isEmpty(): Boolean =
+    def isEmpty: Boolean =
         size == 0 
     
-    override def toString(): String =
+    override def toString: String =
         items.reverse.mkString("Stack(", ", ", ")")
 
 object ArrayBasedStack:

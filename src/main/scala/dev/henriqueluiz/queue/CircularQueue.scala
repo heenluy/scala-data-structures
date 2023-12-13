@@ -50,7 +50,7 @@ class CircularQueue private (
         override def toString(): String = {
             data.mkString("Queue(", ", ", ")")
         }
-    }
+}
 
 object CircularQueue {
     def apply(capacity: Int): CircularQueue = {
