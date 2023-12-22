@@ -155,4 +155,5 @@ object BinaryHeap extends App {
     println(minHeap)
     
     // TODO: create a method which removes an specific element.
+    // TODO: create a node-based queue.
 }
