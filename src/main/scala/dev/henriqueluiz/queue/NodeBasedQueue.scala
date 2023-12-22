@@ -38,21 +38,21 @@ class NodeBasedQueue[A] {
             Some(removedEl)  
   }
 
-  def getFront(): Option[A] = {
+  def getFront: Option[A] = {
     if isEmpty then
         println("Queue is empty. Cannot dequeue.")
-        None
+        return None
     Some(front.get.element)
   }
 
   def getSize: Int = size
   def isEmpty: Boolean = size == 0
   
-  override def toString(): String = {
+  override def toString: String = {
     var frontSnapshot = front
     var result: String = "Queue("
     while frontSnapshot.isDefined do
-        if !frontSnapshot.get.next.isDefined then
+        if frontSnapshot.get.next.isEmpty then
             result += s"${frontSnapshot.get.element}"    
         else
             result += s"${frontSnapshot.get.element}, "
