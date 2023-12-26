@@ -3,7 +3,7 @@ package dev.henriqueluiz.tree
 import scala.annotation.tailrec
 import scala.collection.mutable.ArrayBuffer
 
-object BinaryHeap extends App {
+object ArrayHeapObject extends App {
     class MaxHeap private (private var items: ArrayBuffer[Int]){
         @tailrec
         private final def heapifyDown(index: Int): Unit = {
@@ -154,6 +154,6 @@ object BinaryHeap extends App {
     minHeap.remove()
     println(minHeap)
     
-    // TODO: create a method which removes an specific element.
+    // TODO: create a method which removes a specific element.
     // TODO: create a node-based queue.
 }
