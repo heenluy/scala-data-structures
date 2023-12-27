@@ -4,17 +4,21 @@ import scala.annotation.tailrec
 import scala.collection.mutable.ArrayBuffer
 
 object ArrayHeapObject extends App {
-    class MaxHeap private (private var items: ArrayBuffer[Int]){
+    class BinaryHeap private (
+                            private var items: ArrayBuffer[Int],
+                            private val priorityFun: (x: Int, y: Int) => Boolean
+
+    ){
         @tailrec
         private final def heapifyDown(index: Int): Unit = {
             val left = leftChild(index)
             val right = rightChild(index)
             var biggest = index
 
-            if left < items.length && items(left) > items(biggest) then
+            if left < items.length && priorityFun(items(left), items(biggest)) then
                 biggest = left
 
-            if right < items.length && items(right) > items(biggest) then
+            if right < items.length && priorityFun(items(right), items(biggest)) then
                 biggest = right
 
             if index != biggest then
@@ -27,7 +31,7 @@ object ArrayHeapObject extends App {
             if index <= 0 then return
             val parentEl = parent(index)
 
-            if items(index) > items(parentEl) then
+            if priorityFun(items(index), items(parentEl)) then
                 swap(index, parentEl)
                 heapifyUp(parentEl)
         }
@@ -62,79 +66,17 @@ object ArrayHeapObject extends App {
         def getMaxElement: Option[Int] = items.headOption
 
         override def toString: String = {
-            items.mkString("MaxHeap(", ", ", ")")
+            items.mkString("BinaryHeap(", ", ", ")")
         }
     }
 
-    private object MaxHeap {
-        def empty: MaxHeap = MaxHeap(ArrayBuffer.empty[Int])
-    }
-
-    class MinHeap private(private var items: ArrayBuffer[Int]) {
-
-        @tailrec
-        private final def heapifyDown(index: Int): Unit = {
-            val left = leftChild(index)
-            val right = rightChild(index)
-            var smallest = index
-
-            if left < items.length && items(left) < items(index) then
-                smallest = left
-
-            if right < items.length && items(right) < items(index) then
-                smallest = right
-
-            if smallest != index then
-                swap(index, smallest)
-                heapifyDown(smallest)
-        }
-
-        @tailrec
-        private final def heapifyUp(index: Int): Unit = {
-            if index <= 0 then return
-            val parentItem = parent(index)
-
-            if items(index) < items(parentItem) then
-                swap(index, parentItem)
-                heapifyUp(parentItem)
-        }
-
-        private def swap(x: Int, y: Int): Unit = {
-            val z: Int = items(x)
-            items(x) = items(y)
-            items(y) = z
-        }
-
-        def insert(item: Int): Unit = {
-            items += item
-            heapifyUp(items.length - 1)
-        }
-
-        def remove(): Option[Int] = {
-            if items.isEmpty then return None
-            val minEl: Int = items(0)
-            items(0) = items.last
-            items -= items.last
-            heapifyDown(0)
-            Some(minEl)
-        }
-        private def parent(index: Int): Int = (index - 1) / 2
-        private def leftChild(index: Int): Int = index * 2 + 1
-        private def rightChild(index: Int): Int = index * 2 + 2
-
-        def getMinElement: Option[Int] = items.headOption
-
-        override def toString: String = {
-            items.mkString("MinHeap(", ", ", ")")
-        }
-    }
-
-    private object MinHeap {
-        def empty: MinHeap = MinHeap(ArrayBuffer.empty[Int])
+    private object BinaryHeap {
+        def max: BinaryHeap = BinaryHeap(ArrayBuffer.empty[Int], (x, y) => x > y)
+        def min: BinaryHeap = BinaryHeap(ArrayBuffer.empty[Int], (x, y) => x < y)
     }
 
     println("__Max Heap__")
-    private val maxHeap = MaxHeap.empty
+    private val maxHeap = BinaryHeap.max
     maxHeap.insert(4)
     maxHeap.insert(8)
     maxHeap.insert(2)
@@ -145,7 +87,7 @@ object ArrayHeapObject extends App {
     println("-" * 25)
 
     println("__Min Heap__")
-    private val minHeap = MinHeap.empty
+    private val minHeap = BinaryHeap.min
     minHeap.insert(4)
     minHeap.insert(8)
     minHeap.insert(2)
